@@ -13,7 +13,7 @@ int main()
     Date birthday(a,b,c);
     cout<<"输入姓名"<<PROMPT;
     cin >> name;
-    Student S1(name.c_str(),sizeof name.c_str(),birthday);
+    Student S1(name.c_str(),name.size()+1,birthday);
     Student S2(name,birthday);
     S1.print();
     S2.print();
@@ -25,7 +25,9 @@ int main()
     string nextname;
     cout<<"next name"<<PROMPT;
     cin >> nextname;
-    S2.set_name(nextname.c_str(),sizeof nextname.c_str());
+    S1.set_name(nextname);
+    S2.set_name(nextname.c_str(),nextname.size()+1);
+    S1.print();
     S2.print();
     cout<<"next date"<<PROMPT;
     cin >>a>>b>>c;
