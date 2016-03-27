@@ -8,7 +8,7 @@ int Student::student_count =0;
 Student::Student(const char* name,int size, Date birthdate)
 {
     this->size = size;
-    this->name = (char *)malloc(size);
+    this->name = new char[size];
     birthDate =birthdate;
     set_name(name,size);
     student_count++;
@@ -31,7 +31,7 @@ Student::Student(Student &student)
 }
 Student::~Student()
 {
-    free(name);
+    delete name;
     student_count--;
 }
 int Student::get_name_size()
@@ -55,14 +55,18 @@ Date Student::get_birthDate()
 }
 void Student::set_name(const char *buf,int size)
 {
+    delete name;
+    name = new char[size];
     memcpy(name,buf,size);
     this->size = size;
     return;
 }
 void Student::set_name(std::string name)
 {
-    memcpy(this->name,name.c_str(),name.size()+1);
+    delete this->name;
     size = name.size()+1;
+    this->name = new char[size];
+    memcpy(this->name,name.c_str(),size);
     return;
 }
 void Student::set_birthDate(Date date)
