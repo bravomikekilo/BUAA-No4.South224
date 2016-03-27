@@ -25,7 +25,7 @@ Student::Student(Student &student)
 {
     size = student.size;
     birthDate = student.birthDate;
-    name = (char *)malloc(size);
+    name = new char[size];
     memcpy(name,student.name,size);
     student_count++;
 }
@@ -45,7 +45,7 @@ int Student::get_name(char *buf)
 }
 char *Student::get_name()
 {
-    char *p = (char *)malloc(size);
+    char *p = new char[size];
     memcpy(p,name,size);
     return p;
 }
